@@ -11,6 +11,8 @@ export async function fetchAll(globals) {
       }
     })
 
+    console.log('Fetched data')
+
     const lastProject = result.data[result.data.length - 1]
 
     if (globals.testRunId === lastProject.results.testRunId) return
@@ -22,6 +24,7 @@ export async function fetchAll(globals) {
     )
 
     if (failedIndex === -1) {
+      console.log('All tests passed!')
       push.send(
         `${lastProject.project.assignmentName}`,
         'All tests passed!',
@@ -30,6 +33,7 @@ export async function fetchAll(globals) {
         }
       )
     } else {
+      console.log('Tests failed!')
       await sendFail(globals, lastProject)
     }
   } catch (err) {

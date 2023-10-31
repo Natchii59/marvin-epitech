@@ -6,9 +6,11 @@ const globals = {
 }
 
 async function main() {
+  await fetchAll(globals)
+
   setInterval(async () => {
     await fetchAll(globals)
-  }, 1000 * 60)
+  }, 60000)
 }
 
 main()
